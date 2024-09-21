@@ -66,16 +66,6 @@ select:focus {
   background-color: #16423c;
 }
 
-.radio-buttons {
-  display: flex;
-
-  gap: 1rem;
-}
-
-.radio-group label {
-  color: #16423c;
-}
-
 .error {
   color: red;
   margin-top: 1rem;

@@ -8,9 +8,10 @@ const signupHandler = require("./routes/signup.js");
 const loginHandler = require("./routes/login.js");
 const addProductHandler = require("./routes/addProduct.js");
 const getProductsHandler = require("./routes/getProducts.js");
-const deleteHandler = require('./routes/deleteProduct.js')
+const deleteHandler = require("./routes/deleteProduct.js");
 
-app.use(express.json());
+// app.use(express.json());
+app.use(express.json({ limit: "10mb" }));
 app.use(cors());
 
 connection(); // Check that the DB connection works

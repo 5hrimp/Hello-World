@@ -11,12 +11,12 @@ function Admin() {
     description: "",
     price: "",
     category: "option1",
-    inStock: "",
     imageSrc: ""
   });
   const [image, setImage] = useState("");
   const handleChange = (e: any) => {
     setData({ ...data, [e.target.name]: e.target.value });
+    setMessage("");
   };
 
   const handleSubmit = async (e: any) => {
@@ -30,6 +30,7 @@ function Admin() {
         setMessage(res.data.message);
       }
     } catch (error: any) {
+      console.log("HELLO WORK",error);
       if (error.response) {
         setMessage(error.response.data.message);
       }
@@ -116,29 +117,6 @@ function Admin() {
             <option value="option3">Option 2</option>
           </Form.Select>
         </FloatingLabel>
-
-        {/* In Stock */}
-        <div className="radio-buttons">
-          <label className="form-label"> In Stock</label>
-          <Form.Check
-            type="radio"
-            id="trueOption"
-            label="True"
-            name="inStock"
-            value="true"
-            onChange={handleChange}
-            checked={data.inStock === "true"}
-          />
-          <Form.Check
-            type="radio"
-            id="falseOption"
-            label="False"
-            name="inStock"
-            value="false"
-            onChange={handleChange}
-            checked={data.inStock === "false"}
-          />
-        </div>
 
         <br/>
         <label className="form-label" > Image</label>

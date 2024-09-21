@@ -3,40 +3,44 @@ import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 
 interface Product {
-  id: number;
+  _id: string;
   name: string;
   description: string;
   price: number;
   category: string;
-  inStock: boolean;
   imageSrc: string;
 }
+
 function Products() {
   const [data, setData] = useState<Product[]>([]);
-  useEffect(() => {
+  
+  const fetchProducts = async () => {
     const url = "http://localhost:8000/api/getProducts";
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get<Product[]>(url);
-        setData(response.data);
-        // console.log(response.data);
-      } catch (error) {}
-    };
+    try {
+      const response = await axios.get<Product[]>(url);
+      setData(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    console.log("hello")
     fetchProducts();
-  },[data]);
+  }, []);
 
   return (
     <div>
       {data.map((product) => (
         <ProductCard
-          key={product.id}
-          id={product.id}
+          key={product._id}
+          _id={product._id}
           name={product.name}
           price={product.price}
           description={product.description}
           category={product.category}
-          inStock={product.inStock}
           imageSrc={product.imageSrc}
+          refreshProducts={fetchProducts}  /* Pass refresh function */
         />
       ))}
     </div>

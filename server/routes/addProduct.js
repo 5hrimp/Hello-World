@@ -10,7 +10,7 @@ router.post("/", async (req, res) => {
         console.log(req.body.name=" added");
         return res.status(200).send({message:"Product added!"})
   } catch(error) {
-    console.log(colors.bgRed(error))
+    console.log(error);
     return res.status(500).send({message:"Internal Server Error"})
   }
 });
